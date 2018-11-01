@@ -19,6 +19,10 @@ public class Hero : MonoBehaviour {
 
     private GameObject lastTriggerGo = null;
 
+    public delegate void WeaponFireDelegate();
+
+    public WeaponFireDelegate fireDelegate;
+
     
 
 	void Awake () {
@@ -29,6 +33,7 @@ public class Hero : MonoBehaviour {
         {
             Debug.LogError("Hero.Awake() - Attempted to assign second Hero.S!");
         }
+       // fireDelegate += TempFire;
 	}
 	
 
@@ -43,20 +48,17 @@ public class Hero : MonoBehaviour {
 
         transform.rotation = Quaternion.Euler(yAxis * pitchMult, xAxis * rollMult, 0);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+      //  if (Input.GetKeyDown(KeyCode.Space))
+     //   {
+      //      TempFire();
+      //  }
+		if (Input.GetAxis("Jump") == 1 && fireDelegate != null)
         {
-            TempFire();
-        }
-		
+            fireDelegate();
+        } 
 	}
 
-    void TempFire()
-    {
-        GameObject projGO = Instantiate<GameObject>(projectilePrefab);
-        projGO.transform.position = transform.position;
-        Rigidbody rigidB = projGO.GetComponent<Rigidbody>();
-        rigidB.velocity = Vector3.up * projectileSpeed;
-    }
+    
      void OnTriggerEnter(Collider other)
     {
         Transform rootT = other.gameObject.transform.root;
