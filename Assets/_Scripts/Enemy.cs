@@ -82,9 +82,10 @@ public class Enemy : MonoBehaviour {
                     break;
                 }
                 health -= Main.GetWeaponDefinition(p.type).damageOnHit;
+                ShowDamage();
                 if (health <= 0)
                 {
-                    ShowDamage();
+                    
                     
                     if (!notifiedOfDestruction)
                     {

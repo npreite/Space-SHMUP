@@ -75,14 +75,29 @@ public class Enemy_4 : Enemy {
         return (null);
     }
 
+
+    Part FindPart(GameObject go)
+    {
+        foreach (Part prt in parts)
+        {
+            if (prt.go == go)
+            {
+                return (prt);
+            }
+        }
+        return (null);
+    }
+
     bool Destroyed (GameObject go)
     {
-        return (Destroyed(FindPart(go)));
+        return (Destroyed(FindPart (go)));
     }
+
     bool Destroyed(string n)
     {
         return (Destroyed(FindPart(n)));
     }
+
     bool Destroyed(Part prt)
     {
         if (prt == null)

@@ -88,6 +88,7 @@ public class Weapon : MonoBehaviour {
         {
             return;
         }
+
         Projectile p;
         Vector3 vel = Vector3.up * def.velocity;
 
@@ -122,7 +123,7 @@ public class Weapon : MonoBehaviour {
         if (transform.parent.gameObject.tag == "Hero")
         {
             go.tag = "ProjectileHero";
-            go.layer = LayerMask.NameToLayer("ProjectileEnemy");
+            go.layer = LayerMask.NameToLayer("ProjectileHero");
         }
         go.transform.position = collar.transform.position;
         go.transform.SetParent(PROJECTILE_ANCHOR, true);
